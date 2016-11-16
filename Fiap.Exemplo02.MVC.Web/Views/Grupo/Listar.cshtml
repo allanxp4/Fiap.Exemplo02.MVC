@@ -1,0 +1,67 @@
+﻿@model List<Fiap.Exemplo02.MVC.Web.Models.Grupo>
+@{
+    ViewBag.Title = "Listar";
+}
+
+<h2>Listar</h2>
+
+
+@Helper.Message(TempData["mensagem"], "alert alert-danger")
+
+<table class="table table-bordered"> 
+    <thead>
+        <tr>
+            <th>Nome do Grupo</th>
+            <th>Nota</th>
+            <th>nome do Projeto</th>
+            <th>Descrição</th>
+            <th>Data inicio</th>
+            <th>Data Fim</th>
+            <th>Entregue</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in Model)
+        {
+            <tr>
+                <td>@i.Nome</td>
+                <td>@i.Nota</td>
+                <td>@i.Projeto1.Nome</td>
+                <td>@i.Projeto1.Descricao</td>
+                <td>@i.Projeto1.DataInicio</td>
+                <td>@i.Projeto1.DataTermino</td>
+                <td>@(i.Projeto1.Entregue?"Sim" : "Não")</td>
+                <td>@Html.ActionLink("Editar", "Editar", "Grupo", new { id = i.Id }, new {@class = "btn btn-primary"})
+                    <button type="submit" onclick="grupoId.value =@i.Id" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+                        Excluir
+                    </button></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm("Excluir", "Grupo"))
+                {
+                    <input type="hidden" id="grupoId"  name="grupoId" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                }
+                
+            </div>
+        </div>
+    </div>
+</div>
+

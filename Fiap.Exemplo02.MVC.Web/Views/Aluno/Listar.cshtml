@@ -1,0 +1,85 @@
+﻿@model List<Fiap.Exemplo02.MVC.Web.Models.Aluno>
+
+@{
+    ViewBag.Title = "Listar";
+}
+
+<h2>Listar Aluno</h2>
+
+<br />
+
+@using (Html.BeginForm("Buscar", "Aluno",FormMethod.Get, new {@class = "form-inline" }))
+{ 
+    <div class="row">
+        <div class="col-md-3">
+            @Html.TextBox("nomeBusca", "", new { @class = "form-control", placeholder = "Digite um nome" })
+        </div>
+        <div class="col-md-3">
+            @Html.DropDownList("idGrupo", ViewBag.grupos as SelectList, "Todos os grupos", new { @class = "form-control" })
+        </div>
+        <div class="col-md-3">
+            <input type="submit" value="Filtrar" class="btn btn-primary" />
+        </div>
+    </div>
+    
+}
+
+<br />
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Data de Nascimento</th>
+            <th>Bolsa</th>
+            <th>Desconto</th>
+            <th>Grupo</th>
+            <th>Opções</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var a in Model)
+        {
+            <tr>
+                <td>@a.Nome</td>
+                <td>@a.DataNascimento</td>
+                <td>@(a.Bolsa? "Sim":"Não")</td>
+                <td>@a.Desconto</td>
+                <td>@a.Grupo.Nome</td>
+                <td>
+                    @Html.ActionLink("Editar", "Editar", new {id = @a.Id }, new {@class = "btn btn-primary" })
+                    <button onclick="alunoId.value = @a.Id" type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+                        Excluir
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Confirmação</h4>
+            </div>
+            <div class="modal-body">
+                Deseja excluir o aluno?
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm("Deletar", "Aluno"))
+                {
+                    <input type="hidden" id="alunoId" name="alunoId"/>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                    <button type="submit" class="btn btn-primary">Sim</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

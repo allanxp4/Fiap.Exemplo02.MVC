@@ -1,0 +1,48 @@
+﻿@model Fiap.Exemplo02.MVC.Web.Models.Grupo
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editar Grupo</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(g => g.Id)
+    @Html.HiddenFor(g => g.Projeto1.Id)
+    <div class="form-group">
+        @Html.LabelFor(g => g.Nome)
+        @Html.TextBoxFor(g => g.Nome, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(g => g.Nota)
+        @Html.TextBoxFor(g => g.Nota, new { @class = "form-control" })
+    </div>
+
+    <h2>Cadastrar Projeto</h2>
+
+    <div class="form-group">
+        @Html.LabelFor(p => p.Projeto1.Nome)
+        @Html.TextBoxFor(p => p.Projeto1.Nome, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Projeto1.Descricao)
+        @Html.TextBoxFor(p => p.Projeto1.Descricao, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Projeto1.DataInicio)
+        @Html.TextBoxFor(p => p.Projeto1.DataInicio, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Projeto1.DataTermino)
+        @Html.TextBoxFor(p => p.Projeto1.DataTermino, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.CheckBoxFor(p => p.Projeto1.Entregue)
+        @Html.LabelFor(p => p.Projeto1.Entregue)
+    </div>
+
+    <div>
+        <input type="submit" value="Salvar" class="btn btn-primary" />
+    </div>
+}
+
