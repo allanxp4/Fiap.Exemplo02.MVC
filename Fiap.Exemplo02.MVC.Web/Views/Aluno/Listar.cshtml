@@ -6,6 +6,8 @@
 
 <h2>Listar Aluno</h2>
 
+@Html.ValidationSummary()
+
 <br />
 
 @using (Html.BeginForm("Buscar", "Aluno",FormMethod.Get, new {@class = "form-inline" }))
