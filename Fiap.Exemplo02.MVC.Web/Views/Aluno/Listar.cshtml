@@ -1,4 +1,4 @@
-﻿@model List<Fiap.Exemplo02.MVC.Web.Models.Aluno>
+﻿@model Fiap.Exemplo02.MVC.Web.ViewModels.AlunoViewModel
 
 @{
     ViewBag.Title = "Listar";
@@ -15,7 +15,7 @@
             @Html.TextBox("nomeBusca", "", new { @class = "form-control", placeholder = "Digite um nome" })
         </div>
         <div class="col-md-3">
-            @Html.DropDownList("idGrupo", ViewBag.grupos as SelectList, "Todos os grupos", new { @class = "form-control" })
+            @Html.DropDownList("idGrupo", Model.Grupos as SelectList, "Todos os grupos", new { @class = "form-control" })
         </div>
         <div class="col-md-3">
             <input type="submit" value="Filtrar" class="btn btn-primary" />
@@ -38,7 +38,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var a in Model)
+        @foreach (var a in Model.Alunos)
         {
             <tr>
                 <td>@a.Nome</td>
@@ -47,7 +47,7 @@
                 <td>@a.Desconto</td>
                 <td>@a.Grupo.Nome</td>
                 <td>
-                    @Html.ActionLink("Editar", "Editar", new {id = @a.Id }, new {@class = "btn btn-primary" })
+                    @Html.ActionLink("Editar", "Editar", new { @a.Id }, new {@class = "btn btn-primary" })
                     <button onclick="alunoId.value = @a.Id" type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
                         Excluir
                     </button>

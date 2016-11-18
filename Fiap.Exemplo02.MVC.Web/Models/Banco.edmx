@@ -47,8 +47,8 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Nome" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="Descricao" Type="text" Nullable="false" />
-          <Property Name="DataInicio" Type="datetime" Nullable="false" />
-          <Property Name="DataTermino" Type="datetime" />
+          <Property Name="DataInicio" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DataTermino" Type="datetime2" Precision="7" />
           <Property Name="Entregue" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_Aluno_Grupo">
@@ -88,7 +88,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Projeto_Grupo">
-          <End Role="Grupo" Type="Self.Grupo" Multiplicity="1" />
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Grupo">
@@ -174,8 +176,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nome" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="Descricao" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="DataInicio" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DataTermino" Type="DateTime" Precision="3" />
+          <Property Name="DataInicio" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DataTermino" Type="DateTime" Precision="7" />
           <Property Name="Entregue" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Grupo1" Relationship="Fiap.Exemplo02.Database.Model.FK_Projeto_Grupo" FromRole="Projeto" ToRole="Grupo" />
         </EntityType>

@@ -1,5 +1,6 @@
 ﻿using Fiap.Exemplo02.MVC.Web.Models;
 using Fiap.Exemplo02.MVC.Web.UnitsOfWork;
+using Fiap.Exemplo02.MVC.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,26 +21,37 @@ namespace Fiap.Exemplo02.MVC.Web.Controllers
         #region GET
 
         [HttpGet]
-        public ActionResult Cadastrar()
+        public ActionResult Cadastrar(string msg) //PORQUE EXISTE A MERDA DO ? ENTÃO????? edit: é pq é string
         {
             //buscar Todos grupos casdastrados
+            var viewModel = new AlunoViewModel()
+            {
+                ListaGrupo = ListarGrupos()
+            };
+
+            return View(viewModel);
+        }                 
+        
+
+        private SelectList ListarGrupos()
+        {
             var lista = _unit.GrupoRepository.Listar();
-            var lista2 = _unit.ProfessorRepository.Listar();
-
-            ViewBag.professores = new SelectList(lista2, "Id", "Nome");
-            ViewBag.grupos = new SelectList(lista, "Id", "Nome");
-
-            return View("Cadastrar");
+            return new SelectList(lista, "Id", "Nome");
         }
 
         [HttpGet]
         public ActionResult Listar()
         {
             //Include -> busca o relacionamento (preenche o grupo que o aluno não possui), faz o join.
+           
             var lista = _unit.AlunoRepository.Listar();
-            CarregarComboGrupo();
-
-            return View(lista);
+            var vm = new AlunoViewModel()
+            {
+                Alunos = lista,
+                Grupos = ListarGrupos()
+            };
+            
+            return View(vm);
         }
 
         [HttpGet]
@@ -55,19 +67,21 @@ namespace Fiap.Exemplo02.MVC.Web.Controllers
         public ActionResult Buscar(string nomeBusca, int? idGrupo)
         {
             ICollection<Aluno> lista;
-            if (idGrupo == null)
+          
+            lista = idGrupo == null ?
+                _unit.AlunoRepository.BuscarPor(a => a.Nome.Contains(nomeBusca)) :
+                _unit.AlunoRepository.BuscarPor(a => a.Nome.Contains(nomeBusca) && a.GrupoId == idGrupo);
+            
+
+            var vm = new AlunoViewModel()
             {
-                lista = _unit.AlunoRepository.BuscarPor(a => a.Nome.Contains(nomeBusca));
-            }
-            else
-            {
-                lista = _unit.AlunoRepository.BuscarPor(a => a.Nome.Contains(nomeBusca) && a.GrupoId == idGrupo);
-            }
+                Alunos = lista,
+                Grupos = ListarGrupos()
+            };
 
-            CarregarComboGrupo();
+            
 
-
-            return View("Listar", lista);
+            return View("Listar", vm);
         }
 
         #endregion
@@ -75,20 +89,42 @@ namespace Fiap.Exemplo02.MVC.Web.Controllers
         #region POST
 
         [HttpPost]
-        public ActionResult Cadastrar(Aluno a)
+        public ActionResult Cadastrar(AlunoViewModel avm)
         {
-            _unit.AlunoRepository.Cadastrar(a);
+            var aluno = new Aluno()
+            {
+                Nome = avm.Nome,
+                DataNascimento = avm.DataNascimento,
+                Bolsa = avm.Bolsa,
+                Desconto = avm.Desconto,
+                GrupoId = avm.GrupoId
+
+            };
+            _unit.AlunoRepository.Cadastrar(aluno);
             _unit.Salvar();
-
-            TempData["msg"] = "Cadastrado com sucesso";
-
-            return RedirectToAction("Cadastrar");
+            var viewModel = new AlunoViewModel()
+            {
+                Mensagem = "Aluno cadastrado!",
+                ListaGrupo = ListarGrupos()
+            };
+            return View(viewModel);
         }
 
         [HttpPost]
-        public ActionResult Editar(Aluno a)
+        public ActionResult Editar(AlunoViewModel a)
         {
-            _unit.AlunoRepository.Atualizar(a);
+
+            var aluno = new Aluno()
+            {
+                
+                Id = a.Id,
+                Nome = a.Nome,
+                DataNascimento = a.DataNascimento,
+                Desconto = a.Desconto,
+                Bolsa = a.Bolsa
+            };
+
+            _unit.AlunoRepository.Atualizar(aluno);
             _unit.Salvar();
 
             return RedirectToAction("Listar");
