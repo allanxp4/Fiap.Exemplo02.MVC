@@ -4,13 +4,13 @@
     ViewBag.Title = "Listar";
 }
 
-<h2>Listar Aluno</h2>
+<h2 class="algo">Listar Aluno</h2>
 
 @Html.ValidationSummary()
 
 <br />
 
-@using (Html.BeginForm("Buscar", "Aluno",FormMethod.Get, new {@class = "form-inline" }))
+@using (Html.BeginForm("Buscar", "Aluno",FormMethod.Get, new {@class = "form-inline", id = "formularioBusca" }))
 { 
     <div class="row">
         <div class="col-md-3">
@@ -49,8 +49,8 @@
                 <td>@a.Desconto</td>
                 <td>@a.Grupo.Nome</td>
                 <td>
-                    @Html.ActionLink("Editar", "Editar", new { @a.Id }, new {@class = "btn btn-primary" })
-                    <button onclick="alunoId.value = @a.Id" type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+                    @Html.ActionLink("Editar", "Editar", new { @a.Id }, new {@class = "btn btn-primary item-escondido",  })
+                    <button onclick="alunoId.value = @a.Id" type="button" class="btn btn-danger item-escondido" data-toggle="modal" data-target="#myModal">
                         Excluir
                     </button>
                 </td>
@@ -84,4 +84,45 @@
         </div>
     </div>
 </div>
+
+@section scripts{
+<script>
+    $().ready(function () {
+        //$("td > button, td > a").css("visibility", "hidden");
+
+        $("tr").hover(function () {
+            $(this).find("button, a").css("visibility", "visible")
+        }, function () {
+            $(this).find("button, a").css("visibility", "hidden")
+        })
+
+        $("#idGrupo").change(function () {
+            $("#formularioBusca").submit();
+        })
+    })
+</script>
+}
+
+<style>
+    .item-escondido {
+        visibility: hidden;
+    }
+
+    .algo{
+        animation: flip 2s infinite linear;
+        animation-play-state: paused;
+    }
+    .algo:hover{
+        animation-play-state: running;
+    }
+  
+
+    @@keyframes flip {
+       0% {transform: translateX(0px);}
+       50% {transform: translateX(300px);}
+       100% {transform: translateX(0px);}
+                                   
+    }
+</style>
+
 

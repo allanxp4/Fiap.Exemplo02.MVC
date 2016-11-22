@@ -13,6 +13,7 @@
     <div class="form-group">
         @Html.LabelFor(a => a.Nome)
         @Html.TextBoxFor(a => a.Nome, new {@class = "form-control", type="text" })
+        @Html.ValidationMessageFor(a => a.Nome)
     </div>
     <div class="form-group">
         @Html.LabelFor(a => a.DataNascimento)
@@ -33,8 +34,17 @@
     
     <div>
         <input type="submit" class="btn btn-primary" />
-    </div>
-   
+    </div>  
+}
+
+@section scripts{
+    <script>
+        $().ready(function () {
+            $("#Bolsa").click(function () {
+                $("#Desconto").parent().slideToggle();
+            })
+        })
+    </script>
 }
 
 

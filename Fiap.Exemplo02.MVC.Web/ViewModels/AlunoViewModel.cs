@@ -10,6 +10,8 @@ namespace Fiap.Exemplo02.MVC.Web.ViewModels
 {
     public class AlunoViewModel
     {
+        [StringLength(100)]
+        [Required(ErrorMessage = "Campo necessário")]
         public ICollection<Aluno> Alunos { get; set; }
         public SelectList Grupos { get; set; }
         public SelectList ListaGrupo { get; set; }

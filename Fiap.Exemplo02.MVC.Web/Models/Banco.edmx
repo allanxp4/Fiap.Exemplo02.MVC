@@ -11,7 +11,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nome" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="DataNascimento" Type="datetime" Nullable="false" />
+          <Property Name="DataNascimento" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="Bolsa" Type="bit" Nullable="false" />
           <Property Name="Desconto" Type="float" />
           <Property Name="GrupoId" Type="int" Nullable="false" />
@@ -134,7 +134,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nome" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DataNascimento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataNascimento" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="Bolsa" Type="Boolean" Nullable="false" />
           <Property Name="Desconto" Type="Double" />
           <Property Name="GrupoId" Type="Int32" Nullable="false" />
