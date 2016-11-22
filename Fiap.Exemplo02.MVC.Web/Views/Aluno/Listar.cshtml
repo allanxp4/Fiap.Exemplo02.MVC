@@ -10,8 +10,8 @@
 
 <br />
 
-@using (Html.BeginForm("Buscar", "Aluno",FormMethod.Get, new {@class = "form-inline", id = "formularioBusca" }))
-{ 
+@using (Ajax.BeginForm("Buscar", null, new AjaxOptions { HttpMethod = "get", UpdateTargetId = "tabela", InsertionMode = InsertionMode.Replace }, new {@class = "form-inline", id = "formularioBusca" }))
+{
     <div class="row">
         <div class="col-md-3">
             @Html.TextBox("nomeBusca", "", new { @class = "form-control", placeholder = "Digite um nome" })
@@ -40,22 +40,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var a in Model.Alunos)
-        {
-            <tr>
-                <td>@a.Nome</td>
-                <td>@a.DataNascimento</td>
-                <td>@(a.Bolsa? "Sim":"Não")</td>
-                <td>@a.Desconto</td>
-                <td>@a.Grupo.Nome</td>
-                <td>
-                    @Html.ActionLink("Editar", "Editar", new { @a.Id }, new {@class = "btn btn-primary item-escondido",  })
-                    <button onclick="alunoId.value = @a.Id" type="button" class="btn btn-danger item-escondido" data-toggle="modal" data-target="#myModal">
-                        Excluir
-                    </button>
-                </td>
-            </tr>
-        }
+       @Html.Partial("_tabela", Model.Alunos)
     </tbody>
 </table>
 

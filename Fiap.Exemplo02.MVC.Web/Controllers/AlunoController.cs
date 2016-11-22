@@ -70,18 +70,11 @@ namespace Fiap.Exemplo02.MVC.Web.Controllers
           
             lista = idGrupo == null ?
                 _unit.AlunoRepository.BuscarPor(a => a.Nome.Contains(nomeBusca)) :
-                _unit.AlunoRepository.BuscarPor(a => a.Nome.Contains(nomeBusca) && a.GrupoId == idGrupo);
+                _unit.AlunoRepository.BuscarPor(a => a.Nome.Contains(nomeBusca) && a.GrupoId == idGrupo);         
+                     
             
 
-            var vm = new AlunoViewModel()
-            {
-                Alunos = lista,
-                Grupos = ListarGrupos()
-            };
-
-            
-
-            return View("Listar", vm);
+            return PartialView("_tabela", lista);
         }
 
         #endregion

@@ -1,0 +1,18 @@
+﻿@model List<Fiap.Exemplo02.MVC.Web.Models.Aluno>
+
+@foreach (var a in Model)
+{
+    <tr>
+        <td>@a.Nome</td>
+        <td>@a.DataNascimento</td>
+        <td>@(a.Bolsa ? "Sim" : "Não")</td>
+        <td>@a.Desconto</td>
+        <td>@a.Grupo.Nome</td>
+        <td>
+            @Html.ActionLink("Editar", "Editar", new { @a.Id }, new { @class = "btn btn-primary item-escondido", })
+            <button onclick="alunoId.value = @a.Id" type="button" class="btn btn-danger item-escondido" data-toggle="modal" data-target="#myModal">
+                Excluir
+            </button>
+        </td>
+    </tr>
+}
