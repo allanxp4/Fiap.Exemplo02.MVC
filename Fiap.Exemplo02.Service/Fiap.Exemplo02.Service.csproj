@@ -81,15 +81,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AlunoController.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -103,7 +98,18 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="App_Start\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fiap.Exemplo02.Dominio\Fiap.Exemplo02.Dominio.csproj">
+      <Project>{2099319d-53b5-4c53-8bba-3e9b58078b0e}</Project>
+      <Name>Fiap.Exemplo02.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fiap.Exemplo02.Persistencia\Fiap.Exemplo02.Persistencia.csproj">
+      <Project>{03189387-62e6-4679-ab7d-26bf90612db2}</Project>
+      <Name>Fiap.Exemplo02.Persistencia</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
