@@ -1,5 +1,5 @@
-﻿using Fiap.Exemplo02.MVC.Web.Models;
-using Fiap.Exemplo02.MVC.Web.Repositories;
+﻿using Fiap.Exemplo02.Dominio.Models;
+using Fiap.Exemplo02.Persistencia.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Web;
 using System.Linq.Expressions;
 using System.Data.Entity;
 
-namespace Fiap.Exemplo02.MVC.Web.Repositories
+namespace Fiap.Exemplo02.Persistencia.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {

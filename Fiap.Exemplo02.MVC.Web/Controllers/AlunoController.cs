@@ -1,5 +1,5 @@
-﻿using Fiap.Exemplo02.MVC.Web.Models;
-using Fiap.Exemplo02.MVC.Web.UnitsOfWork;
+﻿using Fiap.Exemplo02.Dominio.Models;
+using Fiap.Exemplo02.Persistencia.UnitsOfWork;
 using Fiap.Exemplo02.MVC.Web.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -19,6 +19,13 @@ namespace Fiap.Exemplo02.MVC.Web.Controllers
         #endregion
 
         #region GET
+
+        [HttpGet]
+        public ActionResult ValidarNome(String nome)
+        {
+            var aluno = _unit.AlunoRepository.BuscarPor(a => a.Nome == nome);
+            return Json(new { existe = aluno.Any() }, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpGet]
         public ActionResult Cadastrar(string msg) //PORQUE EXISTE A MERDA DO ? ENTÃO????? edit: é pq é string

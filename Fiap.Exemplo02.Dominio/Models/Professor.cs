@@ -7,20 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fiap.Exemplo02.MVC.Web.Models
+namespace Fiap.Exemplo02.Dominio.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Projeto
+    public partial class Professor
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Professor()
+        {
+            this.Aluno = new HashSet<Aluno>();
+        }
+    
         public int Id { get; set; }
         public string Nome { get; set; }
-        public string Descricao { get; set; }
-        public System.DateTime DataInicio { get; set; }
-        public Nullable<System.DateTime> DataTermino { get; set; }
-        public bool Entregue { get; set; }
+        public Nullable<decimal> Salario { get; set; }
     
-        public virtual Grupo Grupo1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Aluno> Aluno { get; set; }
     }
 }

@@ -40,10 +40,34 @@
 @section scripts{
     <script>
         $().ready(function () {
+
+
+            $("#Nome").blur(function () {
+                $.get("/Aluno/ValidarNome", { "nome": $("#Nome").val() })
+                   .done(function (data) {
+                       if (data.existe) {
+                           $("[data-valmsg-for=Nome]").addClass("field-validation-error").removeClass("field-validation-valid")
+                                .html("<span>Nome já cadastrado</span>")
+                           console.log("Ja existe no BD!");
+                       }
+                       else {
+                           $("[data-valmsg-for=Nome]").removeClass("field-validation-error").addClass("field-validation-valid")
+                                .html("");
+                       }
+                   });             
+
+            })
+
+
             $("#Bolsa").click(function () {
                 $("#Desconto").parent().slideToggle();
             })
+
+
+            
         })
+
+       
     </script>
 }
 

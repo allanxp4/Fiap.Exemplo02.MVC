@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiap.Exemplo02.MVC.Web", "F
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Fiap.Exemplo02.Database", "Fiap.Exemplo02.Database\Fiap.Exemplo02.Database.sqlproj", "{F07ADD89-2C6D-48CA-B24D-E6AD5399A3BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiap.Exemplo02.Dominio", "Fiap.Exemplo02.Dominio\Fiap.Exemplo02.Dominio.csproj", "{2099319D-53B5-4C53-8BBA-3E9B58078B0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiap.Exemplo02.Persistencia", "Fiap.Exemplo02.Persistencia\Fiap.Exemplo02.Persistencia.csproj", "{03189387-62E6-4679-AB7D-26BF90612DB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiap.Exemplo02.Service", "Fiap.Exemplo02.Service\Fiap.Exemplo02.Service.csproj", "{51102EA3-2F42-4FE6-858C-B3574017C452}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +29,18 @@ Global
 		{F07ADD89-2C6D-48CA-B24D-E6AD5399A3BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F07ADD89-2C6D-48CA-B24D-E6AD5399A3BE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F07ADD89-2C6D-48CA-B24D-E6AD5399A3BE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2099319D-53B5-4C53-8BBA-3E9B58078B0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2099319D-53B5-4C53-8BBA-3E9B58078B0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2099319D-53B5-4C53-8BBA-3E9B58078B0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2099319D-53B5-4C53-8BBA-3E9B58078B0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03189387-62E6-4679-AB7D-26BF90612DB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03189387-62E6-4679-AB7D-26BF90612DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03189387-62E6-4679-AB7D-26BF90612DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03189387-62E6-4679-AB7D-26BF90612DB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51102EA3-2F42-4FE6-858C-B3574017C452}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51102EA3-2F42-4FE6-858C-B3574017C452}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51102EA3-2F42-4FE6-858C-B3574017C452}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51102EA3-2F42-4FE6-858C-B3574017C452}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

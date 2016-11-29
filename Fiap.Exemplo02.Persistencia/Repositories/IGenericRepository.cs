@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fiap.Exemplo02.MVC.Web.Repositories
+namespace Fiap.Exemplo02.Persistencia.Repositories
 {
     public interface IGenericRepository<T>
     {
